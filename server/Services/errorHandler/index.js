@@ -1,0 +1,16 @@
+
+class ErrorMessage {
+  
+    status = 400;
+    message = '';
+    data =[] 
+
+  constructor(status, message, data) {
+    this.status = status;
+    this.message = message;
+    this.data = data;
+  }
+
+}
+
+global.ErrorMessage = ErrorMessage;
