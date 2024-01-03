@@ -19,6 +19,8 @@ ProductRouter.get("/:product",productController.getProduct);
 
 ProductRouter.patch("/:product",Validator(productRequestSchema),productController.updateProduct);
 
+ProductRouter.delete("/:product",productController.deleteProduct);
+
 ProductRouter.post("/variant/:product",productController.addVariant);
 
 ProductRouter.delete("/variant/:variantId",productController.deleteVariant);

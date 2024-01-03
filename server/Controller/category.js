@@ -11,7 +11,9 @@ categroyController.getCategories = function (req, res, next) {
       .catch((err) => {
         res.status(401).send(new ErrorMessage(401, err.message, err));
       });
-  } catch (err) {}
+  } catch (err) {
+    res.status(401).send(new ErrorMessage(401, err.message, err));
+  }
 };
 
 categroyController.addCategories = function (req, res, next) {

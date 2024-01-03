@@ -1,9 +1,6 @@
 const { ProductModel } = require("../Model/product");
 const crypto = require("crypto");
 
-const id = crypto.randomBytes(16).toString("hex");
-
-console.log(id,"id")
 const productController = {};
 
 productController.getProducts = async function (req, res, next) {
@@ -64,6 +61,19 @@ productController.updateProduct = async function (req, res, next) {
   }
 };
 
+productController.deleteProduct = async function (req, res, next) {
+  const { product } = req.params;
+  
+  try {
+    const productDetails = await ProductModel.deleteOne(
+      { _id: product }
+    );
+    res.status(200).json({ data: productDetails });
+  } catch (err) {
+    next(err);
+  }
+};
+
 productController.addVariant = async function (req, res, next) {
   const { product } = req.params;
 
@@ -72,10 +82,10 @@ productController.addVariant = async function (req, res, next) {
   console.log({ variant }, [variant], "variant");
   try {
     const productList = await ProductModel.updateOne(
-      { "_id": product },
+      { _id: product },
       {
         $addToSet: {
-          variant: { ...variant , id: '8491970b2a0bf098dc4e53f71e9c7b8e'},
+          variant: { ...variant },
         },
       }
     );

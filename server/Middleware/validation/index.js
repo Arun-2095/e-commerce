@@ -7,7 +7,7 @@ const options = {
   }
 };
 
-module.exports =  (schema) => (req, res, next) => {
+module.exports =  (schema) =>   (req, res, next) => {
     const {
       error
     } = schema.validate(req.body, options);
