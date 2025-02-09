@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/your-repo.git'  // Clones only changes
+                git 'https://github.com/Arun-2095/e-commerce/'  // Clones only changes
             }
         }
 
