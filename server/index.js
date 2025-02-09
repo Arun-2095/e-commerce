@@ -1,5 +1,5 @@
 const Express = require("express");
-require("../server/Services/Db");
+require("./Services/Db");
 require("./Services/errorHandler");
 const { ProductRouter } = require("./Router/product");
 const { categoryRoute } = require("./Router/category");
@@ -11,7 +11,7 @@ const App = Express();
 App.use(Express.json());
 
 App.get("/healthcheck", (req, res) => {
-  res.send("ok");
+  res.send("okie");
 });
 
 App.use("/product", ProductRouter);

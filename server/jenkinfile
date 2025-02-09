@@ -1,0 +1,41 @@
+pipeline {
+    agent { label 'servent_1' }  // Run on slave machine
+
+    environment {
+        DOCKER_IMAGE = "node_app"
+        DOCKER_TAG = "latest"
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/your-repo.git'  // Clones only changes
+            }
+        }
+
+        stage('Build & Deploy Docker Container') {
+            steps {
+                script {
+                    // Stop and remove existing container
+                    sh "docker stop node_app || true"
+                    sh "docker rm node_app || true"
+
+                    // Build Docker image (npm install happens inside)
+                    sh "docker build -t $DOCKER_IMAGE:$DOCKER_TAG ."
+
+                    // Run new container
+                    sh "docker run -d --name node_app -p 3000:3000 $DOCKER_IMAGE:$DOCKER_TAG"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Deployment successful!"
+        }
+        failure {
+            echo "Build failed!"
+        }
+    }
+}
