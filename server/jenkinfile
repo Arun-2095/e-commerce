@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'servent_1' }  // Run on slave machine
+    agent { label 'dev' }  // Run on slave machine
 
     environment {
         DOCKER_IMAGE = "node_app"
