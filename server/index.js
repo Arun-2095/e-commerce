@@ -11,7 +11,7 @@ const App = Express();
 App.use(Express.json());
 
 App.get("/healthcheck", (req, res) => {
-  res.send("okie");
+  res.send("okay working!!!");
 });
 
 App.use("/product", ProductRouter);
