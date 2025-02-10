@@ -17,14 +17,14 @@ pipeline {
             steps {
                 script {
                     // Stop and remove existing container
-                    sh "docker stop node_app || true"
-                    sh "docker rm node_app || true"
+                    sh "sudo docker stop node_app || true"
+                    sh "sudo docker rm node_app || true"
 
                     // Build Docker image (npm install happens inside)
-                    sh "docker build -t $DOCKER_IMAGE:$DOCKER_TAG ."
+                    sh "sudo docker build -t $DOCKER_IMAGE:$DOCKER_TAG ."
 
                     // Run new container
-                    sh "docker run -d --name node_app -p 3000:3000 $DOCKER_IMAGE:$DOCKER_TAG"
+                    sh "sudo docker run -d --name node_app -p 3000:3000 $DOCKER_IMAGE:$DOCKER_TAG"
                 }
             }
         }
